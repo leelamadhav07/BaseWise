@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "basewise"
+dynamic = ["version"]
+description = "AI-powered natural language interface for Supabase databases"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Leela" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+# Tells setuptools where the actual package code lives (the src/ layout).
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Tells setuptools to read __version__ from this file instead of
+# hardcoding the version number here too. Single source of truth.
+[tool.setuptools.dynamic]
+version = { attr = "basewise._version.__version__" }
