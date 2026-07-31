@@ -27,3 +27,7 @@ where = ["src"]
 # hardcoding the version number here too. Single source of truth.
 [tool.setuptools.dynamic]
 version = { attr = "basewise._version.__version__" }
+
+[tool.pyright]
+extraPaths = ["backend"]
+
