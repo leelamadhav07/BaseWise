@@ -12,7 +12,10 @@ license = { text = "MIT" }
 authors = [
     { name = "Leela" }
 ]
-dependencies = []
+dependencies = [
+    "psycopg2-binary>=2.9.12",
+    "python-dotenv>=1.0.0",
+]
 
 [project.optional-dependencies]
 dev = [

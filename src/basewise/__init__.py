@@ -11,6 +11,23 @@ what gets re-exported from this file — everything else stays
 "internal" to the package.
 """
 
-from basewise._version import __version__
+from ._version import __version__
+from .client import Basewise
+from .database import (
+    Database,
+    DatabaseError,
+    DatabaseConnectionError,
+    DatabaseAuthenticationError,
+    DatabaseTimeoutError,
+)
 
-__all__ = ["__version__"]
+__all__ = [
+    "__version__",
+    "Basewise",
+    "Database",
+    "DatabaseError",
+    "DatabaseConnectionError",
+    "DatabaseAuthenticationError",
+    "DatabaseTimeoutError",
+]
+
