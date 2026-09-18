@@ -7,7 +7,7 @@ class Settings:
     APP_NAME = os.getenv("APP_NAME", "Basewise API")
     APP_VERSION = os.getenv("APP_VERSION", "0.1.0")
     DEBUG = os.getenv("DEBUG", "False").lower() == "true"
-
+    DATABASE_URL = os.getenv("DATABASE_URL")
 settings = Settings()
 
 #Instead of hardcoding values in our code, we load them from environment variables. 

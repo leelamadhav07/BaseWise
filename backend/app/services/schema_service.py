@@ -93,13 +93,13 @@ class SchemaService:
             })
 
         return relationships
+
     def get_schema(self):
         """Return the complete database schema."""
 
         tables = self.get_tables()
         columns = self.get_columns()
         relationships = self.get_relationships()
-
         schema = {
             "tables": {}
         }
