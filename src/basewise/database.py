@@ -2,8 +2,12 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
-# Automatically load environment variables from .env if present
+# Automatically load environment variables from .env or backend/.env if present
 load_dotenv()
+backend_env = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "backend", ".env")
+if os.path.exists(backend_env):
+    load_dotenv(backend_env)
+
 
 
 class DatabaseError(Exception):
