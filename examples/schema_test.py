@@ -18,11 +18,24 @@ try:
     schema = SchemaService(db)
 
     tables = schema.get_tables()
+    columns = schema.get_columns()
 
     print("Tables found:")
     
     for table in tables:
         print("-", table)
+    
+    print("\nColumns:")
+
+    for table, table_columns in columns.items():
+        print(f"\n{table}:")
+
+        for column in table_columns:
+            print(
+                f"  - {column['name']} "
+                f"({column['type']}, "
+                f"nullable={column['nullable']})"
+            )
 
 finally:
     db.close()

@@ -25,3 +25,35 @@ class SchemaService:
             rows = cursor.fetchall()
 
         return [row[0] for row in rows]
+    
+    def get_columns(self):
+        """Return columns and data types for all public tables."""
+
+        query = """
+    SELECT
+        table_name,
+        column_name,
+        data_type,
+        is_nullable
+    FROM information_schema.columns
+    WHERE table_schema = 'public'
+    ORDER BY table_name, ordinal_position;
+    """
+
+        with self.database.connection.cursor() as cursor:
+            cursor.execute(query)
+            rows = cursor.fetchall()
+
+        schema = {}
+
+        for table_name, column_name, data_type, is_nullable in rows:
+            if table_name not in schema:
+                schema[table_name] = []
+
+            schema[table_name].append({
+                "name": column_name,
+                "type": data_type,
+                "nullable": is_nullable == "YES"
+            })
+
+        return schema
