@@ -1,24 +1,18 @@
-import re
 from fastapi import APIRouter, HTTPException
 
 from app.schemas.database import (
     DatabaseConnectionRequest,
     DatabaseConnectionResponse
 )
-from app.services.database_service import DatabaseService
+
+from app.dependencies.database import connect_user_database
+from app.core.config import settings
 
 
 router = APIRouter(
     prefix="/database",
     tags=["Database"]
 )
-
-database_service = DatabaseService()
-
-
-def sanitize_error_message(msg: str) -> str:
-    """Remove sensitive password patterns from error messages."""
-    return re.sub(r':([^/@:\s]+)@', ':****@', msg)
 
 
 @router.post(
@@ -28,9 +22,14 @@ def sanitize_error_message(msg: str) -> str:
 def connect_database(request: DatabaseConnectionRequest):
 
     try:
-        db = database_service.connect(request.database_url)
-        if db:
-            db.close()
+        db_url = request.database_url
+        if not db_url or db_url == "string":
+            db_url = settings.DATABASE_URL
+
+        if not db_url:
+            raise ValueError("No database URL provided and default DATABASE_URL is not set.")
+
+        connect_user_database(db_url)
 
         return DatabaseConnectionResponse(
             success=True,
@@ -38,10 +37,7 @@ def connect_database(request: DatabaseConnectionRequest):
         )
 
     except Exception as e:
-        safe_detail = sanitize_error_message(str(e))
         raise HTTPException(
             status_code=400,
-            detail=f"Database connection failed: {safe_detail}"
+            detail=f"Database connection failed: {str(e)}"
         )
-
-# we used to write and manage api endpoints.
