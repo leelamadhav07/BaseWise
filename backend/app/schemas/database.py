@@ -12,3 +12,4 @@ class DatabaseConnectionRequest(BaseModel):
 class DatabaseConnectionResponse(BaseModel):
     success: bool
     message: str
+# this folder is used to define data structures and handle data validation for your API

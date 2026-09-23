@@ -43,3 +43,5 @@ def connect_database(request: DatabaseConnectionRequest):
             status_code=400,
             detail=f"Database connection failed: {safe_detail}"
         )
+
+# we used to write and manage api endpoints.
