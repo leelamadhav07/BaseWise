@@ -58,6 +58,7 @@ basewise/
 ├── LICENSE
 ├── README.md
 └── pyproject.toml
+``` 
 
 ## Architecture:
 
@@ -168,30 +169,30 @@ Basewise.
 
 The project follows these principles:
 
-Never commit database credentials.
-Never expose database passwords.
-Never send database credentials to an LLM.
-Never blindly execute generated SQL.
-Treat generated SQL as untrusted.
-Validate SQL before execution.
-Prefer read-only database credentials for analytics.
-Keep different users' database contexts isolated.
-Restrict destructive database operations.
-Add authentication before production multi-user usage.
-Require confirmation before schema-changing operations.
-Maintain migration/audit records for future schema modifications.
+1. Never commit database credentials.
+2. Never expose database passwords.
+3. Never send database credentials to an LLM.
+4. Never blindly execute generated SQL.
+5. Treat generated SQL as untrusted.
+6. Validate SQL before execution.
+7. Prefer read-only database credentials for analytics.
+8. Keep different users' database contexts isolated.
+9. Restrict destructive database operations.
+10. Add authentication before production multi-user usage.
+11. Require confirmation before schema-changing operations.
+12. Maintain migration/audit records for future schema modifications.
 
 ## Research Foundation:
 
 Basewise is based on research areas including:
 
-Natural Language Interfaces for Databases
-Text-to-SQL
-Schema Linking
-Large Language Models for SQL
-Constrained SQL Generation
-Text-to-SQL Security
-Self-Correction
-Database-grounded reasoning
-Multi-agent Text-to-SQL systems
+1.Natural Language Interfaces for Databases
+2.Text-to-SQL
+3.Schema Linking
+4.Large Language Models for SQL
+5.Constrained SQL Generation
+6.Text-to-SQL Security
+7.Self-Correction
+8.Database-grounded reasoning
+9.Multi-agent Text-to-SQL systems
 
