@@ -10,4 +10,4 @@ venv/
 backend/.env
 
 # IDE
-.vscode/backend/.env
+.vscode/
